@@ -50,23 +50,12 @@ router.get('/delete', function(req,res){
 });
 
 router.get('/getAll', function(req,res){
-    var yearRec = req.query.year;
-    var makeRec = req.query.make;
-    if(yearRec && makeRec != 'All'){
-        Rental.find({$and: [ {year: yearRec}, {make: makeRec}]},
-            function(err, rentals){
-                if(err)
-                    res.send(err);
-                res.json(rentals);
-            });
-    }
-    else{
-        Rental.find({year: yearRec}, function(err, rentals){
+    Rental.find({},
+        function(err, rentals){
             if(err)
-                res.send(err)
+                res.send(err);
             res.json(rentals);
         });
-    }
 });
 
 module.exports = router;
