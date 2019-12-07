@@ -31,7 +31,7 @@ export default class App extends React.Component {
   render() {
       return (
         <div>
-          <Add selectedMake={this.state.selectedMake} selectedModel={this.state.selectedModel} />
+          <Add />
           <table>
             <thead>
               <tr>
@@ -41,7 +41,7 @@ export default class App extends React.Component {
                 <th className='button-col'>Model</th>
                 <th className='desc-col'>Description</th>
                 <th className='button-col'>Amount</th>
-                <th className='button-col'>Available</th>
+                <th className='button-col'>Available?</th>
               </tr>
             </thead>
             <tbody>
@@ -54,7 +54,7 @@ export default class App extends React.Component {
                     <td className='button-col'>{exp.model}</td>
                     <td className='desc-col'>{exp.description}</td>
                     <td className='button-col'>{exp.amount}</td>
-                    <td className='button-col'>{exp.availability}</td>
+                    <td className='button-col'>{exp.available}</td>
                     </tr>
                 })
               }

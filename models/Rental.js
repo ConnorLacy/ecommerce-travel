@@ -7,7 +7,7 @@ var rentalSchema = new Schema({
     model: String,
     description: String,
     amount: String,
-    availability: Boolean,  
+    available: String,  
 });
 
 module.exports = mongoose.model('Rental', rentalSchema);

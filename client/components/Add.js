@@ -12,12 +12,12 @@ class Add extends React.Component{
         super();
     
         this.state = {
-            year: '',
-            make: '',
+            year: '2020',
+            make: 'Acura',
             model: '',
             description: '',
             amount: '',
-            availability: true,
+            available: 'yes',
             messageFromServer: ''
         }
 
@@ -43,15 +43,8 @@ class Add extends React.Component{
             model: '',
             description: '',
             amount: '',
-            availability: true,
+            available: '',
             messageFromServer: ''
-        });
-    }
-
-    componentDidMount(){
-        this.setState({
-            make: this.selectedMake,
-            model: this.props.selectedModel
         });
     }
 
@@ -64,6 +57,11 @@ class Add extends React.Component{
         if(e.target.name == 'make'){
             this.setState({
                 make: e.target.value
+            });
+        }
+        if(e.target.name == 'available'){
+            this.setState({
+                available: e.target.value
             });
         }
     }
@@ -79,7 +77,8 @@ class Add extends React.Component{
             make: e.state.make,
             model: e.state.model,
             description: e.state.description,
-            availability: e.state.availability
+            amount: e.state.amount,
+            available: e.state.available
         }), {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -157,8 +156,8 @@ class Add extends React.Component{
                         <label htmlFor="model">Model:</label><input type="text" id="model" name="model" value={this.state.model} onChange={this.handleTextChange}></input>
                         <label htmlFor="amount">Amount: $</label><input type="text" id="amount" name="amount" value={this.state.amount} onChange={this.handleTextChange}></input>
                         <label htmlFor="description">Description:</label><input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input>
-                        <label htmlFor="availability">Available?</label>
-                            <select id="availability" name="availability" value={this.state.availability} onChange={this.handleSelectChange}>
+                        <label htmlFor="available">Available?</label>
+                            <select id="available" name="available" value={this.state.available} onChange={this.handleSelectChange}>
                                 <option value="yes" id="yes" selected>Yes</option>
                                 <option value="no" id="no">No</option>                                
                             </select>
