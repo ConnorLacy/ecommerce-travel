@@ -2,10 +2,12 @@ var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 
 var rentalSchema = new Schema({
-    year_make_model: String,
+    year: String,
+    make: String,
+    model: String,
     description: String,
-    amount: Number,
-    available: Boolean,  
+    amount: String,
+    availability: Boolean,  
 });
 
 module.exports = mongoose.model('Rental', rentalSchema);
