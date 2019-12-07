@@ -112,16 +112,17 @@ class Add extends React.Component{
         if(this.state.messageFromServer == ''){
             return(
                 <div>
-                    <Button variant="success" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-plus"></span></Button>
+                    <Button variant="success" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-plus"></span>Add Rental</Button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onRequestClose={this.closeModal}
                         contentLabel="Add Expense"
                         className="Modal">
-                    <Link to={{pathname: '/', search: '' }} style={{ textDecoration: 'none' }}>
+                    <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
                         <Button variant="danger" size="mini" onClick={this.closeModal}><span className="closebtn glyphicon glyphicon-remove"></span></Button>
                     </Link><br/>
                     <fieldset>
+                        <div>
                         <label htmlFor="year">Year:</label>
                             <select id="year" name="year" value={this.state.year} onChange={this.handleSelectChange}>
                                 <option value="2020" id="20" selected>2020</option>
@@ -136,6 +137,8 @@ class Add extends React.Component{
                                 <option value="2011" id="20">2011</option>
                                 <option value="2010" id="20">2010</option>
                             </select>
+                        </div>
+                        <div>
                         <label htmlFor="make">Make:</label>
                             <select id="make" name="make" value={this.state.make} onChange={this.handleSelectChange}>
                                 <option value="Acura" id="Acura" selected>Acura</option>
@@ -153,15 +156,16 @@ class Add extends React.Component{
                                 <option value="Tesla" id="Tesla">Tesla</option>
                                 <option value="Volvo" id="Volvo">Volvo</option>                                
                             </select>
-                        <label htmlFor="model">Model:</label><input type="text" id="model" name="model" value={this.state.model} onChange={this.handleTextChange}></input>
-                        <label htmlFor="amount">Amount: $</label><input type="text" id="amount" name="amount" value={this.state.amount} onChange={this.handleTextChange}></input>
-                        <label htmlFor="description">Description:</label><input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input>
-                        <label htmlFor="available">Available?</label>
+                        </div>
+                        <div><label htmlFor="model">Model:</label><input type="text" id="model" name="model" value={this.state.model} onChange={this.handleTextChange}></input></div>
+                        <div><label htmlFor="amount">Amount: $</label><input type="text" id="amount" name="amount" value={this.state.amount} onChange={this.handleTextChange}></input></div>
+                        <div><label htmlFor="description">Description:</label><input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input></div>
+                        <div><label htmlFor="available">Available?</label>
                             <select id="available" name="available" value={this.state.available} onChange={this.handleSelectChange}>
                                 <option value="yes" id="yes" selected>Yes</option>
                                 <option value="no" id="no">No</option>                                
                             </select>
-                        
+                        </div>                       
                         
                     </fieldset>
                     <div className='button-center'>
@@ -174,7 +178,7 @@ class Add extends React.Component{
         }
         else{
             return(
-                <div>
+                <div className="add-button">
                     <Button variant="success" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-plus"></span></Button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
@@ -182,12 +186,12 @@ class Add extends React.Component{
                         onRequestClose={this.closeModal}
                         contentLabel="Add Expense"
                         className="Modal">
-                    <div className='button-center'>
-                        <h3>{this.state.messageFromServer}</h3>
-                        <Link to={{pathname: '/', search: '' }} style={{ textDecoration: 'none' }}>
-                            <Button variant="success" size="mini" onClick={this.closeModal}>Close the Dialog</Button>
-                        </Link>
-                    </div>
+                        <div className='button-center'>
+                            <h3>{this.state.messageFromServer}</h3>
+                            <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
+                                <Button variant="success" size="mini" onClick={this.closeModal}>Close the Dialog</Button>
+                            </Link>
+                        </div>
                     </Modal>
                 </div>
             )
