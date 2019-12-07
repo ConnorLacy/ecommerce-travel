@@ -4,7 +4,7 @@ import axios from 'axios';
 import Add from './Add'
 
 
-export default class App extends React.Component {
+export default class Admin extends React.Component {
   constructor() {
       super();
       this.state = {
@@ -31,6 +31,7 @@ export default class App extends React.Component {
   render() {
       return (
         <div>
+          <h1>Safe-Travel</h1>
           <Add />
           <table>
             <thead>
