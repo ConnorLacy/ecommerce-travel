@@ -15,7 +15,7 @@ creds.js
 /build
 
 # misc
-build.js
+bundle.js
 .DS_Store
 .env.local
 .env.development.local
