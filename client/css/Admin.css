@@ -1,3 +1,11 @@
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+}
 .button-col {
   width:100px;
   text-align:center;
@@ -8,7 +16,29 @@ text-align:left;
 }
 table {
   counter-reset: tableCount;
+  width: 50%;
+  border: 2px solid grey;
 }
+  thead{
+    border-bottom: 1px solid grey;
+    height: 120px;
+  }
+  thead tr{
+    height: 120px;
+  }
+  tr {
+    height: 80px;
+  }
+
+.glyphicon {
+  margin-right: 10px;
+}
+
+ .btn-success {
+  position: fixed;
+  right: 25%;
+}
+  
 .counterCell:before {
   content: counter(tableCount);
   counter-increment: tableCount;
@@ -22,26 +52,41 @@ text-align: center;
 }
 .Modal {
  position: relative;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
  top: 250px;
  left: 400px;
  right: 20px;
  bottom: 20px;
  background-color: #F5F5F5;
- width:500px;
- border: 1px solid #000;
- border-radius: 4px;
+ width:700px;
+ border: none;
+ border-radius: 10px;
  padding: 20px;
 }
 .Overlay {
  position: fixed;
- top: 0;
- left: 0;
- right: 0;
- bottom: 0;
+ width: 100vw;
+ height: 100vh;
  background-color: rebeccapurple;
 }
-.button-center {
-text-align: center;
+fieldset {
+  width: 100%;
+}
+fieldset div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+fieldset div input, fieldset div select {
+  width: 60%;
+  text-align: center;
+}
+fieldset div label {
+  width: 40%;
 }
 label{
 display:inline-block;
