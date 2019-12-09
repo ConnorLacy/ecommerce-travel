@@ -51,4 +51,7 @@
       color: black;
       z-index: 2;
     }
+    .error {
+      color: red;
+    }
   }
