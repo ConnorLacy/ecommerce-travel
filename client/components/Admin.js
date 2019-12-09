@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
-import Add from './Add'
-
+import Add from './Add';
+import Update from './Update';
 
 export default class Admin extends React.Component {
   constructor() {
@@ -43,19 +43,21 @@ export default class Admin extends React.Component {
                 <th className='desc-col'>Description</th>
                 <th className='button-col'>Amount</th>
                 <th className='button-col'>Available?</th>
+                <th className='button-col'>Update</th>
               </tr>
             </thead>
             <tbody>
               {
-                this.state.data.map(function(exp){
+                this.state.data.map(function(rental){
                   return  <tr>
                     <td className='counterCell'></td>
-                    <td className='button-col'>{exp.year}</td>
-                    <td className='button-col'>{exp.make}</td>
-                    <td className='button-col'>{exp.model}</td>
-                    <td className='desc-col'>{exp.description}</td>
-                    <td className='button-col'>{exp.amount}</td>
-                    <td className='button-col'>{exp.available}</td>
+                    <td className='button-col'>{rental.year}</td>
+                    <td className='button-col'>{rental.make}</td>
+                    <td className='button-col'>{rental.model}</td>
+                    <td className='desc-col'>{rental.description}</td>
+                    <td className='button-col'>{rental.amount}</td>
+                    <td className='button-col'>{rental.available}</td>
+                    <td className='button-col'><Update rental={rental}/></td>
                     </tr>
                 })
               }
