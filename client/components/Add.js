@@ -3,7 +3,6 @@ import {Button} from 'react-bootstrap';
 import Modal from 'react-modal';
 import {Link} from 'react-router-dom';
 import Axios from "axios"
-import { directive } from '@babel/types';
 
 var querystring = require('querystring');
 
@@ -116,7 +115,7 @@ class Add extends React.Component{
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onRequestClose={this.closeModal}
-                        contentLabel="Add Expense"
+                        contentLabel="Add Rental"
                         className="Modal">
                     <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
                         <Button variant="danger" size="mini" onClick={this.closeModal}><span className="closebtn glyphicon glyphicon-remove"></span></Button>
