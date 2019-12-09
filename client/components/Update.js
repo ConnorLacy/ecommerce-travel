@@ -1,31 +1,45 @@
-import React from 'react';
-import {Button} from 'react-bootstrap';
+import React from 'react'
+import Axios from 'axios';
 import Modal from 'react-modal';
-import {Link} from 'react-router-dom';
-import Axios from "axios"
+import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+var querystring = require('querystring')
 
-var querystring = require('querystring');
 
-class Add extends React.Component{
+export default class Update extends React.Component {
     constructor(){
         super();
-    
         this.state = {
-            year: '2020',
-            make: 'Acura',
+            id: '',
+            year: '',
+            make: '', 
             model: '',
             description: '',
             amount: '',
-            available: 'yes',
+            available: '',
+            modalIsOpen: false,
             messageFromServer: ''
         }
-
+        
         this.handleSelectChange = this.handleSelectChange.bind(this);
-        this.onClick = this.onClick.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
-        this.insertNewRental = this.insertNewRental.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.update = this.update.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+
+    }
+
+    componentDidMount(){
+        this.setState({
+            id: this.props.rental._id,
+            year: this.props.rental.year,
+            make: this.props.rental.make,
+            model: this.props.rental.model,
+            description: this.props.rental.description,
+            amount: this.props.rental.amount,
+            available: this.props.rental.available
+        });
     }
 
     openModal(){
@@ -36,14 +50,8 @@ class Add extends React.Component{
 
     closeModal(){
         this.setState({
-            modalIsOpen: false,
-            year: '',
-            make: '',
-            model: '',
-            description: '',
-            amount: '',
-            available: '',
-            messageFromServer: ''
+            modalIsOpen: false
+
         });
     }
 
@@ -65,30 +73,6 @@ class Add extends React.Component{
         }
     }
 
-    onClick(e){
-        this.insertNewRental(this);
-    }
-
-    insertNewRental(e) {
-        Axios.post('/insert',
-        querystring.stringify({
-            year: e.state.year,
-            make: e.state.make,
-            model: e.state.model,
-            description: e.state.description,
-            amount: e.state.amount,
-            available: e.state.available
-        }), {
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-            }
-        }).then(function(response){
-            e.setState({
-                messageFromServer: response.data
-            });
-        });
-    }
-
     handleTextChange(e){
         if(e.target.name == "description"){
             this.setState({
@@ -107,17 +91,41 @@ class Add extends React.Component{
         }
     }
 
+    onClick(e){
+        this.update(this)
+    }
+
+    update(e){
+        Axios.post('/update'.querystring.stringify({
+            id: e.state.id,
+            year: e.state.year,
+            make: e.state.make,
+            model: e.state.model,
+            description: e.state.description,
+            amount: e.state.amount,
+            available: e.state.available
+        }), {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        }).then(function(response){
+            e.setState({
+                messageFromServer: response.data
+            });
+        });
+    }
+
     render(){
         if(this.state.messageFromServer == ''){
-            return(
+            return (
                 <div>
-                    <Button variant="success" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-plus"></span>Add Rental</Button>
+                    <Button bsStyle="warning" bsSize="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onRequestClose={this.closeModal}
-                        contentLabel="Add Rental"
+                        contentLabel="Edit Rental"
                         className="Modal">
-                    <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
+                         <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
                         <Button variant="danger" size="mini" onClick={this.closeModal}><span className="closebtn glyphicon glyphicon-remove"></span></Button>
                     </Link><br/>
                     <fieldset>
@@ -171,24 +179,24 @@ class Add extends React.Component{
                             <br/>
                             <Button variant="success" size="small" onClick={this.onClick}>Add Rental Car</Button>
                     </div>
-                    </Modal>    
+                    </Modal>
                 </div>
             )
         }
         else{
-            return(
-                <div className="add-button">
-                    <Button variant="success" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-plus"></span></Button>
+            return (
+                <div>
+                    <Button bsStyle="warning" bsSize="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
                     <Modal
-                        isOpen={this.state.modalIsOpen}
-                        onAfterOpen={this.afterOpenModal}
-                        onRequestClose={this.closeModal}
-                        contentLabel="Add Expense"
-                        className="Modal">
+                    isOpen={this.state.modalIsOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={this.closeModal}
+                    contentLabel="Add Expense"
+                    className="Modal">
                         <div className='button-center'>
                             <h3>{this.state.messageFromServer}</h3>
                             <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
-                                <Button variant="success" size="mini" onClick={this.closeModal}>Close the Dialog</Button>
+                                <Button bsStyle="success" bsSize="mini" onClick={this.closeModal}>Close the Dialog</Button>
                             </Link>
                         </div>
                     </Modal>
@@ -197,5 +205,3 @@ class Add extends React.Component{
         }
     }
 }
-
-export default Add;
