@@ -1,0 +1,26 @@
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.customer-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.carousel {
+    height: 1000px;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.rental-tile {
+    width: 500px;
+    height: 425px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
