@@ -124,7 +124,7 @@ class Add extends React.Component{
                         <div>
                         <label htmlFor="year">Year:</label>
                             <select id="year" name="year" value={this.state.year} onChange={this.handleSelectChange}>
-                                <option value="2020" id="20" selected>2020</option>
+                                <option value="2020" id="20" defaultValue>2020</option>
                                 <option value="2019" id="20">2019</option>
                                 <option value="2018" id="20">2018</option>
                                 <option value="2017" id="20">2017</option>
@@ -140,7 +140,7 @@ class Add extends React.Component{
                         <div>
                         <label htmlFor="make">Make:</label>
                             <select id="make" name="make" value={this.state.make} onChange={this.handleSelectChange}>
-                                <option value="Acura" id="Acura" selected>Acura</option>
+                                <option value="Acura" id="Acura" defaultValue>Acura</option>
                                 <option value="Audi" id="Audi">Audi</option>
                                 <option value="Alpha" id="Alpha">Alpha</option>
                                 <option value="BMW" id="BMW">BMW</option>
@@ -161,7 +161,7 @@ class Add extends React.Component{
                         <div><label htmlFor="description">Description:</label><input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input></div>
                         <div><label htmlFor="available">Available?</label>
                             <select id="available" name="available" value={this.state.available} onChange={this.handleSelectChange}>
-                                <option value="yes" id="yes" selected>Yes</option>
+                                <option value="yes" id="yes" defaultValue>Yes</option>
                                 <option value="no" id="no">No</option>                                
                             </select>
                         </div>                       
