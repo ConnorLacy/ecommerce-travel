@@ -36,7 +36,7 @@ export default class Admin extends React.Component {
           <table>
             <thead>
               <tr>
-                <th></th>
+                <th className='button-col'>ID</th>
                 <th className='button-col'>Year</th>
                 <th className='button-col'>Make</th>
                 <th className='button-col'>Model</th>
@@ -48,8 +48,8 @@ export default class Admin extends React.Component {
             </thead>
             <tbody>
               {
-                this.state.data.map(function(rental){
-                  return  <tr>
+                this.state.data.map(function(rental, i){
+                  return  <tr key={i}>
                     <td className='counterCell'></td>
                     <td className='button-col'>{rental.year}</td>
                     <td className='button-col'>{rental.make}</td>
