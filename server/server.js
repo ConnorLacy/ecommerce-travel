@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
 
 console.log(`User: ${creds.dbu}\nPass: ${creds.dbp}\n`)
 
-mongoose.connect(`mongodb+srv://${creds.dbu}:${creds.dbp}@main-o5std.gcp.mongodb.net/test?retryWrites=true&w=majority`)
+mongoose.connect(`mongodb+srv://${creds.dbu}:${creds.dbp}@main-o5std.gcp.mongodb.net/test?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true}, )
 
 app.use('/', router);
 module.exports=app;    
