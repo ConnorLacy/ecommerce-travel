@@ -119,7 +119,7 @@ export default class Update extends React.Component {
         if(this.state.messageFromServer == ''){
             return (
                 <div>
-                    <Button bsStyle="warning" bsSize="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
+                    <Button variant="warning" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onRequestClose={this.closeModal}
@@ -186,7 +186,7 @@ export default class Update extends React.Component {
         else{
             return (
                 <div>
-                    <Button bsStyle="warning" bsSize="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
+                    <Button variant="warning" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
                     <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
@@ -196,7 +196,7 @@ export default class Update extends React.Component {
                         <div className='button-center'>
                             <h3>{this.state.messageFromServer}</h3>
                             <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
-                                <Button bsStyle="success" bsSize="mini" onClick={this.closeModal}>Close the Dialog</Button>
+                                <Button variant="success" size="mini" onClick={this.closeModal}>Close the Dialog</Button>
                             </Link>
                         </div>
                     </Modal>
