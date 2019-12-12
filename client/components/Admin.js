@@ -21,6 +21,10 @@ export default class Admin extends React.Component {
       this.getData(this);
   }
 
+  componentWillUnmount(){
+    source.cancel('Operation aborted')
+  }
+
   componentDidUpdate() {
     this.getData(this);
   }
