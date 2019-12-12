@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import axios from 'axios';
+import {Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import Axios from 'axios';
 import Add from './Add';
 import Update from './Update';
+const CancelToken = Axios.CancelToken;
+const source = CancelToken.source();
 
 export default class Admin extends React.Component {
   constructor() {
@@ -14,25 +18,35 @@ export default class Admin extends React.Component {
   }
 
   componentDidMount() {
-      this.getData(this, '');
+      this.getData(this);
   }
 
-  componentDidUpdate(nextProps) {
-    this.getData(this, '');
+  componentDidUpdate() {
+    this.getData(this);
   }
 
-  getData(ev, model){
-      axios.get('/getAll?make=All&model=All')
-        .then(function(response) {
-          ev.setState({data: response.data});
-        });
-  }
+  getData(ev){
+    Axios.get('/getAll?make=All&model=All', {
+        cancelToken:source.token
+        }).catch(function(thrown){
+            if(Axios.isCancel(thrown)){
+                console.log('Request Cancelled', thrown.message);
+            }
+            else{
+                console.log('Error. something happened');
+            }
+        }).then(function(response){
+        ev.setState({data: response.data})});
+}
 
   render() {
       return (
         <div className="container">
-          <h1>Safe-Travel</h1>
-          <Add />
+          <h1>Add or Update Rental Car List</h1>
+          <div className="btn-group btn-group-lg" role="group" aria-label="Table Controls">
+            <Add />
+            <Button variant="primary"><Link to="/" style={{color: 'white', fontWeight: 'Bold'}}>Logout</Link></Button>
+          </div>
           <table>
             <thead>
               <tr>
