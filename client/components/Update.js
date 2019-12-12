@@ -44,14 +44,14 @@ export default class Update extends React.Component {
 
     openModal(){
         this.setState({
-            modalIsOpen: true
+            modalIsOpen: true,
         });
     }
 
     closeModal(){
         this.setState({
-            modalIsOpen: false
-
+            modalIsOpen: false,
+            messageFromServer: ''
         });
     }
 
@@ -96,8 +96,8 @@ export default class Update extends React.Component {
     }
 
     update(e){
-        Axios.post('/update'.querystring.stringify({
-            id: e.state.id,
+        Axios.post('/update', querystring.stringify({
+            _id: e.state.id,
             year: e.state.year,
             make: e.state.make,
             model: e.state.model,
@@ -119,20 +119,20 @@ export default class Update extends React.Component {
         if(this.state.messageFromServer == ''){
             return (
                 <div>
-                    <Button variant="warning" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
+                    <Button variant="warning" size="small" onClick={this.openModal}><span className="fa fa-edit"></span></Button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onRequestClose={this.closeModal}
                         contentLabel="Edit Rental"
                         className="Modal">
                          <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
-                        <Button variant="danger" size="mini" onClick={this.closeModal}><span className="closebtn glyphicon glyphicon-remove"></span></Button>
+                        <Button variant="danger" size="mini" onClick={this.closeModal}><span className="closebtn fa fa-remove"></span></Button>
                     </Link><br/>
                     <fieldset>
                         <div>
                         <label htmlFor="year">Year:</label>
                             <select id="year" name="year" value={this.state.year} onChange={this.handleSelectChange}>
-                                <option value="2020" id="20" selected>2020</option>
+                                <option value="2020" id="20" defaultValue>2020</option>
                                 <option value="2019" id="20">2019</option>
                                 <option value="2018" id="20">2018</option>
                                 <option value="2017" id="20">2017</option>
@@ -148,7 +148,7 @@ export default class Update extends React.Component {
                         <div>
                         <label htmlFor="make">Make:</label>
                             <select id="make" name="make" value={this.state.make} onChange={this.handleSelectChange}>
-                                <option value="Acura" id="Acura" selected>Acura</option>
+                                <option value="Acura" id="Acura" defaultValue>Acura</option>
                                 <option value="Audi" id="Audi">Audi</option>
                                 <option value="Alpha" id="Alpha">Alpha</option>
                                 <option value="BMW" id="BMW">BMW</option>
@@ -169,7 +169,7 @@ export default class Update extends React.Component {
                         <div><label htmlFor="description">Description:</label><input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input></div>
                         <div><label htmlFor="available">Available?</label>
                             <select id="available" name="available" value={this.state.available} onChange={this.handleSelectChange}>
-                                <option value="yes" id="yes" selected>Yes</option>
+                                <option value="yes" id="yes" defaultValue>Yes</option>
                                 <option value="no" id="no">No</option>                                
                             </select>
                         </div>                       
@@ -177,7 +177,7 @@ export default class Update extends React.Component {
                     </fieldset>
                     <div className='button-center'>
                             <br/>
-                            <Button variant="success" size="small" onClick={this.onClick}>Add Rental Car</Button>
+                            <Button variant="success" size="small" onClick={this.onClick}>Update</Button>
                     </div>
                     </Modal>
                 </div>
@@ -186,7 +186,7 @@ export default class Update extends React.Component {
         else{
             return (
                 <div>
-                    <Button variant="warning" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-edit"></span></Button>
+                    <Button variant="warning" size="small" onClick={this.openModal}><span className="fa fa-pencil"></span></Button>
                     <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
