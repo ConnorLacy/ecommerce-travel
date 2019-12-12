@@ -4,13 +4,14 @@ import Modal from 'react-modal';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 var querystring = require('querystring')
-
+const CancelToken = Axios.CancelToken;
+const source = CancelToken.source();
 
 export default class Update extends React.Component {
     constructor(){
         super();
         this.state = {
-            id: '',
+            _id: '',
             year: '',
             make: '', 
             model: '',
@@ -32,7 +33,7 @@ export default class Update extends React.Component {
 
     componentDidMount(){
         this.setState({
-            id: this.props.rental._id,
+            _id: this.props.rental._id,
             year: this.props.rental.year,
             make: this.props.rental.make,
             model: this.props.rental.model,
@@ -40,6 +41,10 @@ export default class Update extends React.Component {
             amount: this.props.rental.amount,
             available: this.props.rental.available
         });
+    }
+
+    componentWillUnmount(){
+        source.cancel('Operation aborted')
     }
 
     openModal(){
@@ -97,7 +102,7 @@ export default class Update extends React.Component {
 
     update(e){
         Axios.post('/update', querystring.stringify({
-            _id: e.state.id,
+            _id: e.state._id,
             year: e.state.year,
             make: e.state.make,
             model: e.state.model,
@@ -112,6 +117,13 @@ export default class Update extends React.Component {
             e.setState({
                 messageFromServer: response.data
             });
+        }).catch((thrown) => {
+            if(Axios.isCancel(thrown)){
+                console.log('Request Cancelled', thrown.message);
+            }
+            else{
+                console.log('Error. Something happened');
+            }
         });
     }
 
@@ -131,46 +143,46 @@ export default class Update extends React.Component {
                     <fieldset>
                         <div>
                         <label htmlFor="year">Year:</label>
-                            <select id="year" name="year" value={this.state.year} onChange={this.handleSelectChange}>
-                                <option value="2020" id="20" defaultValue>2020</option>
-                                <option value="2019" id="20">2019</option>
-                                <option value="2018" id="20">2018</option>
-                                <option value="2017" id="20">2017</option>
-                                <option value="2016" id="20">2016</option>
-                                <option value="2015" id="20">2015</option>
-                                <option value="2014" id="20">2014</option>
-                                <option value="2013" id="20">2013</option>
-                                <option value="2012" id="20">2012</option>
-                                <option value="2011" id="20">2011</option>
-                                <option value="2010" id="20">2010</option>
+                            <select _id="year" name="year" value={this.state.year} onChange={this.handleSelectChange}>
+                                <option value="2020" _id="20" defaultValue>2020</option>
+                                <option value="2019" _id="20">2019</option>
+                                <option value="2018" _id="20">2018</option>
+                                <option value="2017" _id="20">2017</option>
+                                <option value="2016" _id="20">2016</option>
+                                <option value="2015" _id="20">2015</option>
+                                <option value="2014" _id="20">2014</option>
+                                <option value="2013" _id="20">2013</option>
+                                <option value="2012" _id="20">2012</option>
+                                <option value="2011" _id="20">2011</option>
+                                <option value="2010" _id="20">2010</option>
                             </select>
                         </div>
                         <div>
                         <label htmlFor="make">Make:</label>
-                            <select id="make" name="make" value={this.state.make} onChange={this.handleSelectChange}>
-                                <option value="Acura" id="Acura" defaultValue>Acura</option>
-                                <option value="Audi" id="Audi">Audi</option>
-                                <option value="Alpha" id="Alpha">Alpha</option>
-                                <option value="BMW" id="BMW">BMW</option>
-                                <option value="Bently" id="Bently">Bently</option>
-                                <option value="Chevrolet" id="Chevrolet">Chevrolet</option>
-                                <option value="Dodge" id="Dodge">Dodge</option>
-                                <option value="Ford" id="Ford">Ford</option>
-                                <option value="Honda" id="Honda">Honda</option>
-                                <option value="Kia" id="Kia">Kia</option>
-                                <option value="Lexus" id="Lexus">Lexus</option>
-                                <option value="Porsche" id="Porsche">Porsche</option>
-                                <option value="Tesla" id="Tesla">Tesla</option>
-                                <option value="Volvo" id="Volvo">Volvo</option>                                
+                            <select _id="make" name="make" value={this.state.make} onChange={this.handleSelectChange}>
+                                <option value="Acura" _id="Acura" defaultValue>Acura</option>
+                                <option value="Audi" _id="Audi">Audi</option>
+                                <option value="Alpha" _id="Alpha">Alpha</option>
+                                <option value="BMW" _id="BMW">BMW</option>
+                                <option value="Bently" _id="Bently">Bently</option>
+                                <option value="Chevrolet" _id="Chevrolet">Chevrolet</option>
+                                <option value="Dodge" _id="Dodge">Dodge</option>
+                                <option value="Ford" _id="Ford">Ford</option>
+                                <option value="Honda" _id="Honda">Honda</option>
+                                <option value="Kia" _id="Kia">Kia</option>
+                                <option value="Lexus" _id="Lexus">Lexus</option>
+                                <option value="Porsche" _id="Porsche">Porsche</option>
+                                <option value="Tesla" _id="Tesla">Tesla</option>
+                                <option value="Volvo" _id="Volvo">Volvo</option>                                
                             </select>
                         </div>
-                        <div><label htmlFor="model">Model:</label><input type="text" id="model" name="model" value={this.state.model} onChange={this.handleTextChange}></input></div>
-                        <div><label htmlFor="amount">Amount: $</label><input type="text" id="amount" name="amount" value={this.state.amount} onChange={this.handleTextChange}></input></div>
-                        <div><label htmlFor="description">Description:</label><input type="text" id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input></div>
+                        <div><label htmlFor="model">Model:</label><input type="text" _id="model" name="model" value={this.state.model} onChange={this.handleTextChange}></input></div>
+                        <div><label htmlFor="amount">Amount: $</label><input type="text" _id="amount" name="amount" value={this.state.amount} onChange={this.handleTextChange}></input></div>
+                        <div><label htmlFor="description">Description:</label><input type="text" _id="description" name="description" value={this.state.description} onChange={this.handleTextChange}></input></div>
                         <div><label htmlFor="available">Available?</label>
-                            <select id="available" name="available" value={this.state.available} onChange={this.handleSelectChange}>
-                                <option value="yes" id="yes" defaultValue>Yes</option>
-                                <option value="no" id="no">No</option>                                
+                            <select _id="available" name="available" value={this.state.available} onChange={this.handleSelectChange}>
+                                <option value="yes" _id="yes" defaultValue>Yes</option>
+                                <option value="no" _id="no">No</option>                                
                             </select>
                         </div>                       
                         
