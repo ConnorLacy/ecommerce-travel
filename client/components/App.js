@@ -4,6 +4,7 @@ import Axios from 'axios';
 import Tile from './Tile';
 import {withRouter} from 'react-router-dom'
 import {Link } from 'react-router-dom';
+import {cart} from '../cart';
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 require("babel-polyfill");
 
@@ -14,7 +15,6 @@ class App extends React.Component {
     constructor(){
         super();
         this.state ={
-            cart: [],
             data: [],
             isLoading: true,
             showCart: false
@@ -78,10 +78,9 @@ class App extends React.Component {
                                         }
                                     }}}>
                                     <Button variant="success">
-                                        <span className="fa fa-shopping-cart">
-                                            
-                                        </span>
+                                        <span className="fa fa-shopping-cart"></span>
                                     </Button>
+                                    {(cart._id == "") ? "" : <i className="fa fa-circle" aria-hidden="true"></i>}   
                                 </Link>
                             </Form>
                         </Navbar.Collapse>
@@ -102,6 +101,10 @@ class App extends React.Component {
                                 </div>
                             </div>
                         }
+                    <div id="snackbar">
+                        <p>Rental added to cart!</p>
+                        <Link to="/cart" style={{color: 'white', fontStyle: 'unset'}}>Take me to my cart</Link>
+                    </div>
                 </div>
             );
         }

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import { Button } from 'react-bootstrap';
+import { Button, Toast } from 'react-bootstrap';
 import {changeCart} from '../cart';
 
 export default class Tile extends React.Component {
@@ -20,6 +20,7 @@ export default class Tile extends React.Component {
         this.changeState = this.changeState.bind(this);
         this.toggleSelectedClass = this.toggleSelectedClass.bind(this);
         this.modifyCart = this.modifyCart.bind(this);
+        this.toast = this.toast.bind(this);
     }
     
     componentDidMount(){
@@ -52,7 +53,7 @@ export default class Tile extends React.Component {
         if(e.target.className.includes("rental-tile")){
             this.toggleSelectedClass(e);
         }
-        else{
+        else if (e.target.className.includes("cart-button")){
             this.modifyCart(e)
         }
     }
@@ -77,6 +78,13 @@ export default class Tile extends React.Component {
 
     modifyCart(e){
         changeCart({...this.props.rentalProp});
+        this.toast();
+    }
+
+    toast(){
+        let x = document.getElementById("snackbar")
+        x.className = "show";
+        setTimeout(() => {x.className = x.className.replace("show", "");}, 3000);
     }
 
     render(){
@@ -86,6 +94,7 @@ export default class Tile extends React.Component {
                 <img src="https://www.paylesscar.com/content/dam/cars/l/2017/nissan/2017-nissan-versa-sv-auto-sedan-blue_featured.png" width="250" height="250"/>
                 <h3>{this.state.year} {this.state.make} {this.state.model}</h3>
                 <p>{this.state.description}</p>
+                <h6>${this.state.amount}</h6>
                 <h3>{className.split(" ")[1]}</h3>
                 {this.state.hasButton ? (<Button variant="light" size="sm" className="cart-button" onClick={this.onClick}><span className="fa fa-plus"></span> Add to Cart</Button>) : (<p style={{display: 'none'}}></p>)}
             </div>
