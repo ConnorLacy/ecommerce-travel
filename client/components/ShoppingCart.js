@@ -22,9 +22,6 @@ class ShoppingCart extends React.Component{
     }
 
     componentDidMount(){
-        console.log('Shopping cart: ');
-        console.log(cart);
-
         this.setState({
             _id: cart._id,
             year: cart.year,

@@ -59,7 +59,6 @@ export default class Tile extends React.Component {
 
     toggleSelectedClass(e){
         let x = document.getElementsByClassName("selected");
-        console.log(x)
         if(e.target.className.includes('Booked')){}
         else{
             if(e.target.className.includes("rental-tile") && !(e.target.className.includes("selected"))){
