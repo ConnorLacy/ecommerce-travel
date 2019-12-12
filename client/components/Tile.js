@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-
+import { Button } from 'react-bootstrap';
 
 export default class Tile extends React.Component {
     constructor(){
@@ -61,6 +61,7 @@ export default class Tile extends React.Component {
                 <h3>{this.state.year} {this.state.make} {this.state.model}</h3>
                 <p>{this.state.description}</p>
                 <h3>{availability.split(" ")[0]}</h3>
+                <Button variant="light" size="sm" className="cart-button"><span className="fa fa-plus"></span> Add to Cart</Button>
             </div>
         );
     }
