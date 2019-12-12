@@ -5,8 +5,8 @@ import Tile from './Tile';
 import {withRouter} from 'react-router-dom'
 import {Link } from 'react-router-dom';
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import ShoppingCart from './ShoppingCart';
 require("babel-polyfill");
+
 const CancelToken = Axios.CancelToken;
 const source = CancelToken.source();
 
@@ -19,14 +19,10 @@ class App extends React.Component {
             isLoading: true,
             showCart: false
         };
-        // this.getData = this.getData.bind(this);
+        this.getData = this.getData.bind(this);
     }
     componentDidMount(){
         this.getData(this);
-    }
-
-    componentWillUnmount(){
-        // source.cancel('Operation cancelled')
     }
 
     componentDidUpdate(){
@@ -34,10 +30,6 @@ class App extends React.Component {
     }
 
     getData(App){
-        // let response = await Axios.get('/getAll?make=All&model=All');
-        // let { newData } = response.data;
-        // console.log(newData)
-        // this.setState({ data: newData});
         Axios.get('/getAll?make=All&model=All', {
             cancelToken:source.token
             }).then(response => {
