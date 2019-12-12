@@ -96,10 +96,10 @@ class Login extends React.Component {
                 <h1>Login Page</h1>
                 <p className="error">{this.state.error}</p>
                 <label htmlFor="username">Username</label>
-                <input type="text" id="username" name="username" value={this.state.username} onChange={this.handleTextChange} onFocus={this.clearInputs}></input>
+                <input type="text" _id="username" name="username" value={this.state.username} onChange={this.handleTextChange} onFocus={this.clearInputs}></input>
                 
                 <label htmlFor="password">Password</label>
-                <input type="password" id="password" name="password" value={this.state.fakePassword} onChange={this.handleTextChange} onFocus={this.clearInputs}></input>
+                <input type="password" _id="password" name="password" value={this.state.fakePassword} onChange={this.handleTextChange} onFocus={this.clearInputs}></input>
 
                 <Button variant="primary" size="lg" onClick={this.onClick}>Log In</Button>
             </div>
