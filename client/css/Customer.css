@@ -12,11 +12,17 @@
     justify-content: center;
 }
 .rental-tile {
-    width: 500px;
-    height: 425px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 500px;
+  height: 425px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 20px;
+  margin: 25px 0 25px 0px;
+}
+.rental-tile:hover{
+  transform: scale(.99);
 }
     .rental-tile h3{
         margin: 5px;
@@ -24,61 +30,66 @@
     .rental-tile p {
         margin: 10px;
     }
-
-    @-webkit-keyframes fadeInTotal {
-        from {
-          opacity: 0;
-        }
-      
-        to {
-          opacity: 1;
-        }
-      }
-      
-      @keyframes fadeInTotal {
-        from {
-          opacity: 0;
-        }
-      
-        to {
-          opacity: 1;
-        }
-      }
-      
       .fadeInTotal {
         -webkit-animation-name: fadeInTotal;
         animation-name: fadeInTotal;
         animation-duration: 1s;
       }
-
-      @-webkit-keyframes fadeInPartial {
-        from {
-          opacity: 0;
-        }
-      
-        to {
-          opacity: .4;
-        }
-      }
-      
-      @keyframes fadeInPartial {
-        from {
-          opacity: 0;
-        }
-      
-        to {
-          opacity: .4;
-        }
-      }
-      
       .fadeInPartial {
         -webkit-animation-name: fadeInPartial;
         animation-name: fadeInPartial;
         animation-duration: 1s;
       }
+    .selected {
+      box-shadow: inset 0px -3px 0px 0px lightskyblue;
+    }
 
 
 .Booked {
     opacity: .4;
 }
 
+.form-inline .btn {
+  margin-right: 10px;
+}
+
+
+@-webkit-keyframes fadeInTotal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInTotal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeInPartial {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: .4;
+  }
+}
+
+@keyframes fadeInPartial {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: .4;
+  }
+}
