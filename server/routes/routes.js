@@ -25,6 +25,7 @@ router.route('/insert').post(function(req,res){
 
 router.route('/update').post(function(req,res){
     const doc = {
+        _id: req.body._id,
         year: req.body.year,
         make: req.body.make,
         model: req.body.model,

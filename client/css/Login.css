@@ -19,7 +19,7 @@
       margin: auto;
     }
 
-    input {
+    .parent input {
       width: 50%;
       max-width: 450px;
       height: 50px;

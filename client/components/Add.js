@@ -110,15 +110,15 @@ class Add extends React.Component{
     render(){
         if(this.state.messageFromServer == ''){
             return(
-                <div>
-                    <Button variant="success" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-plus"></span>Add Rental</Button>
+                <div className="add-container">
+                    <Button variant="success" size="lg" onClick={this.openModal}><span className="fa fa-plus"></span>Add Rental</Button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onRequestClose={this.closeModal}
                         contentLabel="Add Rental"
                         className="Modal">
                     <Link to={{pathname: '/admin', search: '' }} style={{ textDecoration: 'none' }}>
-                        <Button variant="danger" size="mini" onClick={this.closeModal}><span className="closebtn glyphicon glyphicon-remove"></span></Button>
+                        <Button variant="danger" size="mini" onClick={this.closeModal}><span className="closebtn fa fa-remove"></span></Button>
                     </Link><br/>
                     <fieldset>
                         <div>
@@ -177,8 +177,8 @@ class Add extends React.Component{
         }
         else{
             return(
-                <div className="add-button">
-                    <Button variant="success" size="small" onClick={this.openModal}><span className="glyphicon glyphicon-plus"></span></Button>
+                <div className="add-container">
+                    <Button variant="success" size="lg" onClick={this.openModal}><span className="fa fa-plus"></span></Button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         onAfterOpen={this.afterOpenModal}
