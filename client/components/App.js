@@ -4,8 +4,10 @@ import Axios from 'axios';
 import Tile from './Tile';
 import {withRouter} from 'react-router-dom'
 import {Link } from 'react-router-dom';
+import {cart} from '../cart';
 import { Nav, Navbar, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
-import ShoppingCart from './ShoppingCart';
+require("babel-polyfill");
+
 const CancelToken = Axios.CancelToken;
 const source = CancelToken.source();
 
@@ -13,7 +15,6 @@ class App extends React.Component {
     constructor(){
         super();
         this.state ={
-            cart: [],
             data: [],
             isLoading: true,
             showCart: false
@@ -25,7 +26,7 @@ class App extends React.Component {
     }
 
     componentDidUpdate(){
-        this.getData(this);
+       this.getData(this);
     }
 
     getData(App){
@@ -50,7 +51,7 @@ class App extends React.Component {
             return(
                 <div className="customer-main">
                     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-                        <Navbar.Brand>ParkWeb</Navbar.Brand>
+                        <Navbar.Brand><Link to="/"></Link>ParkWeb</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav">
                             <Nav className="mr-auto">
@@ -69,37 +70,41 @@ class App extends React.Component {
                                     <Link to="/login" style={{ fontWeight: "Bold", color: 'white'}}>Login</Link>
                                 </Button>
                                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                                <Link to="/cart">
+                                <Link to={{
+                                    pathname: "/cart",
+                                    cartProps:{
+                                        rental: () => {
+                                            return document.getElementsByClassName("selected")
+                                        }
+                                    }}}>
                                     <Button variant="success">
-                                        <span className="fa fa-shopping-cart">
-                                            
-                                        </span>
+                                        <span className="fa fa-shopping-cart"></span>
                                     </Button>
+                                    {(cart._id == "") ? "" : <i className="fa fa-circle" aria-hidden="true"></i>}   
                                 </Link>
                             </Form>
                         </Navbar.Collapse>
-                        </Navbar>
-                        {
-                            this.state.showCart ? (
-                                <ShoppingCart cartProp={this.state.cart}/>
-                            ) : (                       
-                                <div className="customer-container">
-                                <h1>Plan ahead and Travel worry-free</h1>
-                                    <div className="carousel">
-                                        {!this.state.isLoading ?
-                                            (
-                                                this.state.data.map(function(rental){
-                                                    return <Tile rentalProp={rental} key={rental._id}/>
-                                                })
-                                            ) 
-                                            : 
-                                            (
-                                                <p>Loading...</p>
-                                            )}
-                                    </div>
+                        </Navbar>                     
+                            <div className="customer-container">
+                            <h1>Plan ahead and Travel worry-free</h1>
+                                <div className="carousel">
+                                    {!this.state.isLoading ?
+                                        (
+                                            this.state.data.map(function(rental){
+                                                return <Tile rentalProp={rental} key={rental._id} hasButton={true}/>
+                                            })
+                                        ) 
+                                        : 
+                                        (
+                                            <p>Loading...</p>
+                                        )}
                                 </div>
-                                )
+                            </div>
                         }
+                    <div id="snackbar">
+                        <p>Rental added to cart!</p>
+                        <Link to="/cart" style={{color: 'white', fontStyle: 'unset'}}>Take me to my cart</Link>
+                    </div>
                 </div>
             );
         }

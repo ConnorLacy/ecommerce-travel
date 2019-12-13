@@ -42,8 +42,8 @@ router.route('/update').post(function(req,res){
 });
 
 router.get('/delete', function(req,res){
-    var id = req.query.id
-    Rental.find({_id: id}).remove().exec(function(err, rental){
+    var _id = req.query._id
+    Rental.find({_id: _id}).remove().exec(function(err, rental){
         if(err)
             res.send(err)
         res.send('Rental successfully deleted!');

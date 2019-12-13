@@ -1,0 +1,57 @@
+.cart-split, .cart-single {
+    width: 100vw;
+}
+.cart-single .rental-tile {
+    margin: auto;
+}
+h1{
+    margin: 50px auto;
+    text-align: center;
+}
+
+.half-container {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.left-half {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%
+
+}
+
+.right-half {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    width: 60%;
+}
+
+.form-control{
+    width: 60%;
+}
+
+.form-group {
+    margin-left: 25%;
+}
+
+hr {
+    color: black;
+    width: 60%;
+    height: 1px;
+    margin-left: 18%;
+}
+
+.cart-checkout {
+    display: block;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+    position: relative;
+    right: 0%;
+    left: 38%;
+}

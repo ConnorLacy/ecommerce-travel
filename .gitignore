@@ -2,6 +2,7 @@
 
 # keys
 creds.js
+.env
 
 # dependencies
 /node_modules
