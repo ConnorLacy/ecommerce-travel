@@ -55,3 +55,9 @@ hr {
     right: 0%;
     left: 38%;
 }
+
+.below-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

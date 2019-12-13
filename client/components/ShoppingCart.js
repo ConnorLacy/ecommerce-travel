@@ -126,6 +126,7 @@ class ShoppingCart extends React.Component{
                                 </Form>
                             </Navbar.Collapse>
                             </Navbar>
+                    <div className="below-nav">
                     <h1>Ready to checkout?</h1>
                     <div className="half-container">
                         <div className="left-half">
@@ -170,6 +171,7 @@ class ShoppingCart extends React.Component{
                             </Form>
                     </div>
                 </div>
+                </div>
             );
         }
 
@@ -206,12 +208,13 @@ class ShoppingCart extends React.Component{
                                 </Form>
                             </Navbar.Collapse>
                             </Navbar>
+                        <div className="below-nav">
                         <h1>Thanks for Renting with us!</h1>
                         <Tile rentalProp={{...this.state}} key={this.state._id} hasButton={false}/>
                         <Button variant="primary" type="submit" size="md">
                             <Link to="/" style={{color: 'white'}}>Return to Listings</Link>
                         </Button>
-
+                        </div>
                     </div>
             );
 
